@@ -4,12 +4,6 @@ body {
   padding: 0;
 }
 
-.init-alert {
-  background-color: blue;
-  position: relative;
-  display: flex;
-}
-
 .box {
   z-index: 0;
   display: flex;

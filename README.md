@@ -21,6 +21,3 @@ Start2Impact Profile: [https://talent.start2impact.it/profile/vittorio-gioda](ht
 LikedIn: [https://www.linkedin.com/in/vittorio-gioda/](https://www.linkedin.com/in/vittorio-gioda/)
 
 Project Link: [https://github.com/Teygeta/Project_Start2Impact_JS](https://github.com/Teygeta/Project_Start2Impact_JS)
-
-
-

@@ -10,7 +10,7 @@ body {
   display: flex;
 }
 
-.box-1 {
+.box {
   z-index: 0;
   display: flex;
   justify-content: center;
@@ -27,7 +27,6 @@ body {
 
 button {
   color: white;
-  border: none;
   padding: 5px;
   margin: 10px;
   width: 100px;
@@ -36,7 +35,6 @@ button {
   cursor: pointer;
   background-color: rgb(0, 0, 0);
   border: 1px solid rgb(131, 131, 131);
-  display: inline;
 }
 
 button:hover {
@@ -45,4 +43,4 @@ button:hover {
 
 button:active {
   transform: scale(0.95);
-}/*# sourceMappingURL=style.css.map */
+}

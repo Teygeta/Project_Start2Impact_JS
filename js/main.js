@@ -1,99 +1,91 @@
-const box1 = document.createElement('div');
-box1.className = 'box-1';
+function createElement(tag, className, content = null) {
+  const element = document.createElement(tag);
+  element.className = className;
+  element.innerHTML = content;
+  return element
+}
 
-const divInput = document.getElementsByClassName('input')
+const box = createElement('div', 'box')
+const result = createElement('span', 'result', '0')
+const incDecBox = createElement('div', 'inc_dec')
+const dec = createElement('button', 'dec', '-')
+const inc = createElement('button', 'inc', '+')
+const buttonReset = createElement('button', 'buttonReset', 'Reset')
+const buttonSave = createElement('button', 'buttonSave', 'Save')
+const buttonLoad = createElement('button', 'buttonLoad', 'Load')
+const alertNum = createElement('div', 'alertNum')
 
-const result = document.createElement('span');
-result.className = 'result';
-result.textContent = '0';
 
-const incDec = document.createElement('div');
-incDec.className = 'inc_dec';
+//Append elements
+document.body.appendChild(box);
+box.appendChild(alertNum);
+box.appendChild(result);
+box.appendChild(incDecBox);
+box.appendChild(buttonReset);
+box.appendChild(buttonSave);
+box.appendChild(buttonLoad);
+incDecBox.appendChild(dec);
+incDecBox.appendChild(inc);
 
-const buttonBox = document.createElement('div');
-buttonBox.className = 'buttonBox';
-
-const dec = document.createElement('button');
-dec.className = 'dec';
-dec.textContent = '-';
-
-const inc = document.createElement('button');
-inc.className = 'inc';
-inc.textContent = '+';
-
-const buttonReset = document.createElement('button');
-buttonReset.className = 'buttonReset';
-buttonReset.textContent = 'Reset';
-
-const buttonSave = document.createElement('button');
-buttonSave.className = 'buttonSave';
-buttonSave.textContent = 'Save';
-
-const buttonLoad = document.createElement('button');
-buttonLoad.className = 'buttonLoad';
-buttonLoad.textContent = 'Load';
-
-const alertNum = document.createElement('div');
-alertNum.className = 'alertNum';
-box1.appendChild(alertNum);
-
-//APPEND ELEMENT
-document.body.appendChild(box1);
-box1.appendChild(result);
-box1.appendChild(incDec);
-incDec.appendChild(dec);
-incDec.appendChild(inc);
-box1.appendChild(buttonReset);
-box1.appendChild(buttonSave);
-box1.appendChild(buttonLoad);
-
-//COUNTER LOGIC
+//Counter logic
 let counter = 0;
 let numToInit = 0;
 
 function countSet(sAction) {
-    if (numToInit > 0) {
-        if (sAction === 'inc') {
-            counter += numToInit;
-        } else if (sAction === 'dec') {
-            counter -= numToInit;
-        } else {
-            alert('action not valid');
-        }
+  if (numToInit > 0) {
+    if (sAction === 'inc') {
+      counter += numToInit;
+    } else if (sAction === 'dec') {
+      counter -= numToInit;
     } else {
-        if (sAction === 'inc') {
-            counter++;
-        } else if (sAction === 'dec') {
-            counter--;
-        } else {
-            alert('action not valid');
-        }
+      alert('action not valid');
     }
+  } else {
+    if (sAction === 'inc') {
+      counter++;
+    } else if (sAction === 'dec') {
+      counter--;
+    } else {
+      alert('action not valid');
+    }
+  }
 }
 
-inc.addEventListener('mousedown', () => {
-    countSet('inc');
-    result.innerHTML = counter;
-})
+//Event Delegation
+document.body.onclick = function (event) {
+  let target = event.target
 
-dec.addEventListener('mousedown', () => {
-    countSet('dec');
-    result.innerHTML = counter;
-})
+  switch (target.className) {
+    case ('inc') :
+      countSet('inc');
+      result.innerHTML = counter;
+      break
 
-buttonReset.addEventListener('click', () => {
-    counter = 0;
-    saveNum = 0;
-    result.innerHTML = counter;
-})
+    case ('dec') :
+      countSet('dec');
+      result.innerHTML = counter;
+      break
 
-buttonSave.addEventListener('click', () => {
-    let saveNum = counter;
-    
-    alertNum.textContent = `Number ${saveNum} is saved!`;
+    case ('buttonReset') :
+      result.innerHTML = '0'
+      counter = 0
+      alertNum.textContent = ''
+      break
 
-    buttonLoad.addEventListener('click', () => {
-        counter = saveNum;
-        result.innerHTML = counter;
-    })
-})
+    case ('buttonSave') :
+      let numSaved = 0
+      if (counter !== 0) {
+        numSaved = counter
+        alertNum.textContent = `Number ${numSaved} is saved`
+      } else alert('You can\'t save the number 0')
+
+      buttonLoad.addEventListener('click', () => {
+        counter = numSaved
+        result.innerHTML = counter
+      })
+      break
+
+    default:
+      return
+  }
+}

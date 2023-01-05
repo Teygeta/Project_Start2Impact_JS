@@ -2,7 +2,7 @@
 
 ## About The Project
 
-<img src=".assets/img/App_Screen.png" width="400" style="border-radius: 10px" alt="App_screen"/>
+<img src="./assets/img/App_Screen.png" width="400" style="border-radius: 10px" alt="App_screen"/>
 
 This project is made during the course of study I am doing through the [Start2Impact](https://www.start2impact.it/) platform, to certify the skills learned.
 It represents a simple counter that allows you to add, subtract, save and reset a numerical value.
